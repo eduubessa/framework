@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers\Classes\Database;
+namespace App\Core\Database;
 
 abstract class Model extends Builder {
 
