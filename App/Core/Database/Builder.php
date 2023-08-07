@@ -3,6 +3,7 @@
 namespace App\Core\Database;
 
 use PDO;
+use App\Core\Database\Connection;
 
 abstract class Builder extends Connection
 {

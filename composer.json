@@ -1,21 +1,22 @@
 {
-    "name": "eduubessa/oop",
-    "description": "Learn OOP and concepts",
-    "autoload": {
-        "psr-4": {
-            "App\\": "App/"
-        },
-        "files": [
-            "./App/Helpers/helper.php"
-        ]
+  "name": "eduubessa/oop",
+  "description": "Learn OOP and concepts",
+  "autoload": {
+    "psr-4": {
+      "App\\": "App/"
     },
-    "authors": [
-        {
-            "name": "eduubessa",
-            "email": "eduubessa@gmail.com"
-        }
-    ],
-    "require": {
-        "php": "^8.2"
+    "files": [
+      "./App/Helpers/helper.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "eduubessa",
+      "email": "eduubessa@gmail.com"
     }
+  ],
+  "require": {
+    "php": "^8.2",
+    "ext-pdo": "*"
+  }
 }
