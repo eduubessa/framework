@@ -8,22 +8,25 @@ function dd($value)
     exit(0);
 }
 
-function config($argument): array
+function config($argument): string
 {
+    $configuration = null;
     $arguments = explode('.', $argument);
-    $filename = $arguments[0];
-    $arguments = array_slice($arguments, 1);
 
-
-    if(file_exists(__dir__. '/../../Config/'. $filename .'.php')){
-        $configuration = require_once(__dir__. '/../../Config/'. $filename .'.php');
+    if(!file_exists(__dir__. '/../../Config/'. $arguments[0] .'.php')){
+        exit(0);
     }
 
-    foreach($arguments as $argument) {
-        if(array_key_exists($argument, $configuration)){
-            $configuration = $configuration[$argument];
+    $conf = require_once(__dir__. '/../../Config/'. $arguments[0] .'.php');
+    $configuration = $conf;
+    $arguments = array_slice($arguments, 1);
+
+    foreach($arguments as $arg)
+    {
+        if(is_array($configuration) && array_key_exists($arg, $configuration)) {
+            $configuration = $configuration[$arg];
         }else{
-            $configuration = [];
+            $configuration = $conf;
         }
     }
 
