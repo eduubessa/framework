@@ -11,10 +11,12 @@ class PDODriver {
     protected string $dbname;
 
     protected static string $query;
+    private \PDO $connection;
 
-    protected function start_connection()
+    protected function start_connection(): void
     {
-        $this->connection = new \PDO($this->driver. ":". $this->hostname, $this->username, $this->password);
+        $this->connection = new \PDO($this->driver. ":port={$this->port};host={$this->hostname};dbname={$this->dbname}", $this->username, $this->password);
+//        $this->connection->setAttribute(\PDO::ATTR_ERRMODE);
     }
 
     protected static function select(array|string $columns = "*"): PDODriver

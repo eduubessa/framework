@@ -6,7 +6,8 @@
       "App\\": "App/"
     },
     "files": [
-      "./App/Helpers/helper.php"
+      "./App/Helpers/helper.php",
+      "./Bootstrap/bootstrap.php"
     ]
   },
   "authors": [
@@ -18,6 +19,7 @@
   "require": {
     "php": "^8.1",
     "ext-pdo": "*",
-    "guzzlehttp/guzzle": "^7.0"
+    "guzzlehttp/guzzle": "^7.0",
+    "vlucas/phpdotenv": "^5.5"
   }
 }

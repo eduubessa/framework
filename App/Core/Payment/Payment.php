@@ -18,7 +18,6 @@ interface Payment {
     public function total(int|float $value = 0);
     public function country(string $code);
     public function process();
-
     public function pay();
 
 }

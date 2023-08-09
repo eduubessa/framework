@@ -1,8 +1,9 @@
 <?php
 
 use App\Core\Config\Config;
+use JetBrains\PhpStorm\NoReturn;
 
-function dd($value)
+#[NoReturn] function dd($value)
 {
     echo json_encode($value);
     exit(0);
@@ -28,4 +29,9 @@ function config($argument): mixed
     }
 
     return $configuration;
+}
+
+function env(string $key, string|int $default = null)
+{
+    return array_key_exists($key, $_ENV) ? $_ENV[$key] : $default;
 }

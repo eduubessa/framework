@@ -7,6 +7,7 @@ use App\Core\Database\Drivers\PDODriver;
 class Connection extends PDODriver
 {
     protected string $driver = "mysql";
+    protected int $port = 3306;
     protected string $hostname;
     protected string $username;
     protected string $password;
@@ -16,17 +17,18 @@ class Connection extends PDODriver
 
     private mixed $connection;
 
-    private string $connection_name = "default";
+    private string $connection_name = "mysql";
 
     public function __construct()
     {
-        $configuration = config('database.'. $this->connection_name);
 
-        $this->driver = $configuration['driver'];
-        $this->hostname = $configuration['hostname'];
-        $this->username = $configuration['username'];
-        $this->password = $configuration['password'];
-
+        $this->connection_name = env('DB_CONNECTION', 'mysql');
+        $this->driver   = config('database.'. $this->connection_name .'.driver');
+        $this->port     = config('database.'. $this->connection_name .'.port');
+        $this->hostname = config('database.'. $this->connection_name .'.hostname');
+        $this->username = config('database.'. $this->connection_name .'.username');
+        $this->password = config('database.'. $this->connection_name .'.password');
+        $this->dbname   = config('database.'. $this->connection_name .'.dbname');
 
         $this->getAllDrivers();
     }
@@ -36,7 +38,7 @@ class Connection extends PDODriver
         $this->connection_name = $name;
     }
 
-    private function getAllDrivers()
+    private function getAllDrivers(): void
     {
         if(in_array($this->driver, \PDO::getAvailableDrivers())){
             $this->start_connection();

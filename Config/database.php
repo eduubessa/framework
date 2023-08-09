@@ -2,25 +2,29 @@
 
 return [
 
-    "default" => [
+    "mysql" => [
 
         "driver" => "mysql",
 
-        "hostname" => "localhost",
+        "port" => env('DB_PORT', 3306),
 
-        "username" => "root",
+        "hostname" => env('DB_HOSTNAME', "localhost"),
 
-        "password" => "password",
+        "username" => env('DB_USERNAME', 3306),
 
-        "dbname" => "database_name",
+        "password" => env('DB_PASSWORD', ""),
 
-        "encode" => "utf8mb4",
+        "dbname" => env('DB_DATABASE', ""),
 
-        "prefix" => ""
+        "encode" => env("DB_ENCODE", "utf8mb4"),
+
+        "prefix" => env("DB_PREFIX", "")
     ],
 
     "mysqli" => [
         "driver" => "mysqli",
+
+        "port" => 3306,
 
         "hostname" => "localhost//mysql",
 
