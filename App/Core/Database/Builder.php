@@ -10,9 +10,19 @@ class Builder extends Connection
     private static string $table;
     protected static string $query = "";
 
+    protected static Connection $connection;
+
     public static function table(string $name): static
     {
         self::$table = $name;
+
+        return new static();
+    }
+
+    public static function connection($name): static
+    {
+        $connection = new Connection();
+        $connection->setConnection($name);
 
         return new static();
     }
@@ -169,16 +179,13 @@ class Builder extends Connection
         echo self::$query;
     }
 
-    public static function raw(string $query)
+    public static function raw(string $query): void
     {
         self::$query = $query;
     }
 
-
-    public static function get(): void
+    public static function execute(): void
     {
         self::$query .= ";";
-
-        echo self::$query;
     }
 }

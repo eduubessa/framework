@@ -12,7 +12,6 @@ class Connection extends PDODriver
     protected string $username;
     protected string $password;
     protected string $dbname;
-
     private string $tablePrefix;
 
     private mixed $connection;
@@ -29,11 +28,12 @@ class Connection extends PDODriver
         $this->username = config('database.'. $this->connection_name .'.username');
         $this->password = config('database.'. $this->connection_name .'.password');
         $this->dbname   = config('database.'. $this->connection_name .'.dbname');
+        $this->tablePrefix   = config('database.'. $this->connection_name .'.prefix');
 
         $this->getAllDrivers();
     }
 
-    public function connection(string $name): void
+    public function setConnection(string $name): void
     {
         $this->connection_name = $name;
     }
@@ -41,18 +41,11 @@ class Connection extends PDODriver
     private function getAllDrivers(): void
     {
         if(in_array($this->driver, \PDO::getAvailableDrivers())){
-            $this->start_connection();
+            $this->initialize();
         }elseif(extension_loaded($this->driver)){
             echo "Brevemente";
         }else{
             echo "No driver valid";
         }
-
     }
-
-    public function teste()
-    {
-        echo $this->connection_name. PHP_EOL;
-    }
-
 }

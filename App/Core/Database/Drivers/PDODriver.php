@@ -13,7 +13,7 @@ class PDODriver {
     protected static string $query;
     private \PDO $connection;
 
-    protected function start_connection(): void
+    protected function initialize(): void
     {
         $this->connection = new \PDO($this->driver. ":port={$this->port};host={$this->hostname};dbname={$this->dbname}", $this->username, $this->password);
 //        $this->connection->setAttribute(\PDO::ATTR_ERRMODE);
